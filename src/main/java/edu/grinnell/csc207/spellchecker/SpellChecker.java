@@ -3,11 +3,13 @@ package edu.grinnell.csc207.spellchecker;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * A spellchecker maintains an efficient representation of a dictionary for
  * the purposes of checking spelling and provided suggested corrections.
+ * By Emily and Finn. Unfinished, but figured we should submit what we have
  */
 public class SpellChecker {
     /** The number of letters in the alphabet. */
@@ -24,16 +26,48 @@ public class SpellChecker {
         return new SpellChecker(Files.readAllLines(Paths.get(filename)));
     }
 
+    // Part 1: We drew the dog tree on a whiteboard.
+
     /** A Node of the SpellChecker structure. */
     private class Node {
-        // TODO: implement me!
+        public char ch;
+        public ArrayList<Node> children;
+
+        public Node(char ch, ArrayList<Node> children) {
+            this.ch = ch;
+            this.children = children;
+        }
     }
 
     /** The root of the SpellChecker */
     private Node root;
 
-    public SpellChecker(List<String> dict) {
-        // TODO: implement me!
+    public SpellChecker(List<String> dict) throws IllegalArgumentException{
+        if (dict == null) {
+            throw new IllegalArgumentException();
+        }
+        String first = dict.get(0);
+        char[] firstChars = new char[first.length()];
+        first.getChars(0, first.length(), firstChars, 0);
+        ArrayList<Node> firstElts = new ArrayList<Node>();
+        root = new Node(firstChars[0], firstElts);
+        Node cursor = root; 
+        for (int i = 1; i < first.length(); i++) {
+            Node newNode = new Node(firstChars[i], new ArrayList<Node>());
+            cursor.children.set(0, newNode);
+        }
+        for (int i = 1; i < dict.size(); i++) {
+            String s = dict.get(i);
+            char[] curChars = new char[s.length()];
+            s.getChars(0, s.length(), curChars, 0);
+            ArrayList<Node> nodeElts = new ArrayList<Node>();
+            
+            Node cur = root;
+            for (int j = 1; j < s.length(); i++) {
+                // Idea: while at a node, search nodes around for the relevant character.
+            }
+
+        }
     }
 
     public void add(String word) {
@@ -98,3 +132,4 @@ public class SpellChecker {
         }
     }
 }
+
