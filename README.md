@@ -1,6 +1,6 @@
 # Lab: Spellchecker
 
-Authors: (_TODO: fill in names here!_)
+Authors:  * By Emily and Finn.
 
 ## Resources
 
@@ -11,3 +11,4 @@ Authors: (_TODO: fill in names here!_)
 ## Revision Log
 
 *   (_TODO: fill in your changes to your project here!_)
+*   Unfinished, but figured we should submit what we have. Worked on this in class twice. On Wednesday and Friday.
